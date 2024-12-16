@@ -7,6 +7,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         GameViewInterface view = new GameView(scanner);
+        GameModel model = new GameModel();
 
         scanner.close();
     }
