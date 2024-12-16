@@ -4,32 +4,33 @@ import java.util.Random;
 
 class NumberCode extends Code {
 
-    NumberCode(int codeLength) {
-        super(codeLength);
+    NumberCode(final GameSettings gameSettings) {
+        super(gameSettings);
     }
 
     @Override
-    String generateRandomCode() {
-        String code = "";
-        Random random = new Random();
-        while (code.length() != codeLength) {
-            code += random.nextInt(codeLength) + 1;
+    String generateRandomCode(int codeLength, int symbolsCount, char[] symbolsList) {
+        final Random random = new Random();
+
+        String randomCode = "";
+        while (randomCode.length() != codeLength) {
+            randomCode += random.nextInt(symbolsCount) + 1;
         }
-        return code;
+        return randomCode;
     }
 
     @Override
-    char[] initSymbolsList() {
-        char[] symbolsList = new char[codeLength];
-        for (int i = 0; i < codeLength; i++) {
+    char[] initSymbolsList(int symbolsCount) {
+        final char[] symbolsList = new char[symbolsCount];
+        for (int i = 0; i < symbolsCount; i++) {
             symbolsList[i] = (char) (i + 1);
         }
         return symbolsList;
     }
 
     @Override
-    String initRangelabel() {
-        return "1-" + codeLength;
+    String initRangelabel(int symbolsCount) {
+        return "1-" + symbolsCount;
     }
 
     @Override

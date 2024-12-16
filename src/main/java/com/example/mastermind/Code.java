@@ -1,25 +1,26 @@
 package com.example.mastermind;
 
 abstract class Code {
+    private final String code;
     private final char[] symbolsList;
     private final String rangeLabel;
     private final int maximumCodeLength;
 
-    final int codeLength;
+    Code(final GameSettings settings) {
+        final int symbolsCount = settings.getSymbolsCount();
+        final int codeLength = settings.getCodeLength();
 
-    Code(int codeLength) {
-        this.codeLength = codeLength;
-
-        symbolsList = initSymbolsList();
-        rangeLabel = initRangelabel();
+        symbolsList = initSymbolsList(symbolsCount);
+        rangeLabel = initRangelabel(symbolsCount);
         maximumCodeLength = initMaximumCodeLength();
+        code = generateRandomCode(codeLength, symbolsCount, symbolsList);
     }
 
-    abstract String generateRandomCode();
+    abstract String generateRandomCode(int codeLength, int symbolsCount, char[] symbolsList);
 
-    abstract char[] initSymbolsList();
+    abstract char[] initSymbolsList(int symbolsCount);
 
-    abstract String initRangelabel();
+    abstract String initRangelabel(int symbolsCount);
 
     abstract int initMaximumCodeLength();
 
