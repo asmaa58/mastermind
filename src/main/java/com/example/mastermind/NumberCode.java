@@ -30,7 +30,7 @@ class NumberCode extends Code {
 
     @Override
     String initRangelabel(int symbolsCount) {
-        return "1-" + symbolsCount;
+        return "1 to " + symbolsCount;
     }
 
     @Override
