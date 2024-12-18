@@ -2,7 +2,7 @@ package com.example.mastermind;
 
 import java.util.Scanner;
 
-public class App {
+class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

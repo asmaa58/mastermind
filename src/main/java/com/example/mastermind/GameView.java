@@ -8,7 +8,7 @@ class GameView implements GameViewInterface {
     private Scanner scanner;
     private final String PROMPT_SYMBOL = Ansi.CYAN + "> " + Ansi.RESET;
 
-    public GameView(Scanner scanner) {
+    GameView(final Scanner scanner) {
         this.scanner = scanner;
     }
 

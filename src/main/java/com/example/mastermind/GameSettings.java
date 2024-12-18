@@ -19,19 +19,19 @@ class GameSettings {
         codeType = DEFAULT_CODE_TYPE;
     }
 
-    public CodeType getCodeType() {
+    CodeType getCodeType() {
         return codeType;
     }
 
-    public int getCodeLength() {
+    int getCodeLength() {
         return codeLength;
     }
 
-    public int getSymbolsCount() {
+    int getSymbolsCount() {
         return symbolsCount;
     }
 
-    public int getMaxAttempts() {
+    int getMaxAttempts() {
         return maxAttempts;
     }
 }
