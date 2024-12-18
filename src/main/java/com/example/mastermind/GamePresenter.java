@@ -16,7 +16,8 @@ class GamePresenter {
         boolean shouldStartGame = view.promptUserForGameStart(
                 settings.getCodeLength(),
                 model.getRangeLabel(),
-                settings.getMaxAttempts());
+                settings.getMaxAttempts(),
+                settings.getCodeType());
 
         if (!shouldStartGame)
             System.exit(0);

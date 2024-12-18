@@ -4,7 +4,7 @@ import java.util.List;
 
 interface GameViewInterface {
     // Events
-    boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts);
+    boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts, CodeType codeType);
 
     String promptUserForGuess(int codeLength);
 
@@ -15,4 +15,3 @@ interface GameViewInterface {
 
     void printHeader(List<Guess> guesses);
 }
-

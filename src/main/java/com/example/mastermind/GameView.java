@@ -12,9 +12,9 @@ class GameView implements GameViewInterface {
     }
 
     @Override
-    public boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'promptUserForGameStart'");
+    public boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts, CodeType codeType) {
     }
 
     @Override
