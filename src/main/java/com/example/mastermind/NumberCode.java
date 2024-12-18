@@ -37,4 +37,9 @@ class NumberCode extends Code {
     int initMaximumCodeLength() {
         return 9;
     }
+
+    @Override
+    boolean isUserGuessValid(String userGuess, int codeLength, int symbolsCount) {
+        return userGuess.matches("^[1-" + symbolsCount + "]{" + codeLength + "}$");
+    }
 }

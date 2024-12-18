@@ -37,4 +37,9 @@ class ColorCode extends Code {
     int initMaximumCodeLength() {
         return ALL_LETTERS.length();
     }
+
+    @Override
+    boolean isUserGuessValid(String userGuess, int codeLength, int symbolsCount) {
+        return userGuess.matches("^[" + ALL_LETTERS.substring(0, symbolsCount) + "]{" + codeLength + "}$");
+    }
 }

@@ -24,6 +24,8 @@ abstract class Code {
 
     abstract int initMaximumCodeLength();
 
+    abstract boolean isUserGuessValid(String userGuess, int codeLength, int symbolsCount);
+
     final char[] getSymbolsList() {
         return symbolsList;
     }
