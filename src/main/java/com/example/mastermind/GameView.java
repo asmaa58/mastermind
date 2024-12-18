@@ -11,6 +11,11 @@ class GameView implements GameViewInterface {
 
     GameView(final Scanner scanner) {
         this.scanner = scanner;
+        if (isRunningInIDEConsole()) {
+            System.err.println(Ansi.RED + "ERROR: Running in IDE console is not supported.\nPlease run in a terminal."
+                    + Ansi.RESET);
+            System.exit(1);
+        }
     }
 
     @Override
@@ -103,6 +108,10 @@ class GameView implements GameViewInterface {
     public void printHeader(List<Guess> guesses) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'printHeader'");
+    }
+
+    private boolean isRunningInIDEConsole() {
+        return System.console() == null;
     }
 
     private void printBanner() {
