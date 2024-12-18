@@ -2,6 +2,7 @@ package com.example.mastermind;
 
 abstract class Code {
     private final String code;
+
     private final char[] symbolsList;
     private final String rangeLabel;
     private final int maximumCodeLength;
@@ -36,5 +37,9 @@ abstract class Code {
 
     final int getMaximumCodeLength() {
         return maximumCodeLength;
+    }
+
+    final String getCodeText() {
+        return code;
     }
 }
