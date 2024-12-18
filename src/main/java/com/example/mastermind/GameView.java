@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 class GameView implements GameViewInterface {
 
-    private Scanner scanner;
     private final String PROMPT_SYMBOL = Ansi.CYAN + "> " + Ansi.RESET;
+
+    private final Scanner scanner;
 
     GameView(final Scanner scanner) {
         this.scanner = scanner;

@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(System.in);
 
-        GameViewInterface view = new GameView(scanner);
-        GameModel model = new GameModel();
-        GamePresenter presenter = new GamePresenter(view, model);
+        final GameViewInterface view = new GameView(scanner);
+        final GameModel model = new GameModel();
+        final GamePresenter presenter = new GamePresenter(view, model);
 
         scanner.close();
     }
