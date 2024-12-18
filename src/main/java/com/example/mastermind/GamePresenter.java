@@ -7,5 +7,18 @@ class GamePresenter {
     GamePresenter(GameViewInterface view, GameModel model) {
         this.view = view;
         this.model = model;
+        startGame();
+    }
+
+    private void startGame() {
+        GameSettings settings = model.getGameSettings();
+
+        boolean shouldStartGame = view.promptUserForGameStart(
+                settings.getCodeLength(),
+                model.getRangeLabel(),
+                settings.getMaxAttempts());
+
+        if (!shouldStartGame)
+            System.exit(0);
     }
 }
