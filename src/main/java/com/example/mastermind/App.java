@@ -8,6 +8,7 @@ public class App {
 
         GameViewInterface view = new GameView(scanner);
         GameModel model = new GameModel();
+        GamePresenter presenter = new GamePresenter(view, model);
 
         scanner.close();
     }
