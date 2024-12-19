@@ -10,7 +10,7 @@ class GameSettings {
     private final int DEFAULT_CODE_LENGTH = 4;
     private final int DEFAULT_SYMBOLS_COUNT = 4;
     private final int DEFAULT_MAX_ATTEMPTS = 10;
-    private final CodeType DEFAULT_CODE_TYPE = CodeType.NUMBER;
+    private final CodeType DEFAULT_CODE_TYPE = CodeType.COLOR;
 
     GameSettings() {
         codeLength = DEFAULT_CODE_LENGTH;
