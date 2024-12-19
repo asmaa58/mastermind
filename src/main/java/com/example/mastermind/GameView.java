@@ -111,8 +111,14 @@ class GameView implements GameViewInterface {
 
     @Override
     public void userLost(String answer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'userLost'");
+        System.out.println(Ansi.RED + "" + Ansi.BOLD + """
+                  ____                         ___
+                 / ___| __ _ _ __ ___   ___   / _ \\__   _____ _ __
+                | |  _ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|
+                | |_| | (_| | | | | | |  __/ | |_| |\\ V /  __/ |
+                 \\____|\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|
+                  """ + Ansi.RESET);
+        System.out.println("The code was " + colorColorCode(answer));
     }
 
     @Override
