@@ -5,7 +5,7 @@ import java.util.List;
 
 class GameModel {
     private final GameSettings gameSettings;
-    private final GameState gameState;
+    private GameState gameState;
     private final List<Guess> guessList;
     private final Code code;
 
