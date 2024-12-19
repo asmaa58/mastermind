@@ -55,5 +55,10 @@ class GameModel {
         final int attemptsRemaining = gameSettings.getMaxAttempts() - (guessList.size() + 1);
         Guess guess = new Guess(guessText, code.getCodeText(), attemptsRemaining);
         guessList.add(guess);
+
+        if (guess.getExactMatches() == gameSettings.getCodeLength())
+            gameState = GameState.USER_WON;
+        else if (attemptsRemaining == 0)
+            gameState = GameState.USER_LOST;
     }
 }
