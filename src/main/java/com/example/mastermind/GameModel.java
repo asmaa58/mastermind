@@ -52,7 +52,8 @@ class GameModel {
     }
 
     void addGuess(String guessText) {
-        Guess guess = new Guess(guessText, code.getCodeText(), guessList.size() + 1); // TODO test that .size() works
+        final int attemptsRemaining = gameSettings.getMaxAttempts() - (guessList.size() + 1);
+        Guess guess = new Guess(guessText, code.getCodeText(), attemptsRemaining);
         guessList.add(guess);
     }
 }
