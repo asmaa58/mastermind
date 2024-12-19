@@ -30,5 +30,10 @@ class GamePresenter {
             model.addGuess(userGuess);
             view.printHeader(model.getGuessList());
         }
+
+        if (model.getGameState() == GameState.USER_WON)
+            view.userWon();
+        else
+            view.userLost(model.getSolution());
     }
 }
