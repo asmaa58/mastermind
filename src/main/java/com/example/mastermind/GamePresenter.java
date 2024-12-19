@@ -11,7 +11,6 @@ class GamePresenter {
     }
 
     private void startGame() {
-        GameSettings settings = model.getGameSettings();
 
         boolean shouldStartGame = view.promptUserForGameStart(
                 model.getRangeLabel());
