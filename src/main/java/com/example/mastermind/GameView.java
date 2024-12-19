@@ -100,8 +100,13 @@ class GameView implements GameViewInterface {
 
     @Override
     public void userWon() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'userWon'");
+        System.out.println(Ansi.GREEN + "" + Ansi.BOLD + """
+                         __   __           __        __
+                         \\ \\ / /__  _   _  \\ \\      / /__  _ __
+                          \\ V / _ \\| | | |  \\ \\ /\\ / / _ \\| '_ \\
+                           | | (_) | |_| |   \\ V  V / (_) | | | |
+                           |_|\\___/ \\__,_|    \\_/\\_/ \\___/|_| |_|
+                """ + Ansi.RESET);
     }
 
     @Override
