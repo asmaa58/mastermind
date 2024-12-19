@@ -43,6 +43,9 @@ class GameModel {
         return guessList;
     }
 
+    boolean isUserGuessValid(String guessText) {
+        return code.isUserGuessValid(guessText, gameSettings.getCodeLength(), gameSettings.getSymbolsCount());
+    }
     void addGuess(String guessText) {
         Guess guess = new Guess(guessText, code.getCodeText(), guessList.size() + 1); // TODO test that .size() works
         guessList.add(guess);
