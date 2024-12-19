@@ -9,8 +9,11 @@ class GameView implements GameViewInterface {
 
     private final Scanner scanner;
 
-    GameView(final Scanner scanner) {
+    private final GameSettings settings;
+
+    GameView(final Scanner scanner, final GameSettings settings) {
         this.scanner = scanner;
+        this.settings = settings;
         if (isRunningInIDEConsole()) {
             System.err.println(Ansi.RED + "ERROR: Running in IDE console is not supported.\nPlease run in a terminal."
                     + Ansi.RESET);
@@ -19,7 +22,7 @@ class GameView implements GameViewInterface {
     }
 
     @Override
-    public boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts, CodeType codeType) {
+    public boolean promptUserForGameStart(String rangeLabel) {
         System.out.print(Ansi.CLEAR);
 
         printBanner();
@@ -30,6 +33,9 @@ class GameView implements GameViewInterface {
                 Try to guess the code in the fewest number of attempts.
                 """);
 
+        final CodeType codeType = settings.getCodeType();
+        final int numOfAttempts = settings.getMaxAttempts();
+        final int codeLength = settings.getCodeLength();
         final String rangeLabelFormatted;
         if (codeType == CodeType.COLOR)
             rangeLabelFormatted = "colors " + colorColorCode(rangeLabel) + ", and colors can be repeated";
@@ -87,9 +93,9 @@ class GameView implements GameViewInterface {
         return colored;
     }
     @Override
-    public String promptUserForGuess(int codeLength) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'promptUserForGuess'");
+    public String promptUserForGuess() {
     }
 
     @Override

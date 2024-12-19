@@ -6,8 +6,8 @@ class App {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        final GameViewInterface view = new GameView(scanner);
         final GameModel model = new GameModel();
+        final GameViewInterface view = new GameView(scanner, model.getGameSettings());
         final GamePresenter presenter = new GamePresenter(view, model);
 
         scanner.close();

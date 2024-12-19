@@ -4,9 +4,9 @@ import java.util.List;
 
 interface GameViewInterface {
     // Events
-    boolean promptUserForGameStart(int codeLength, String rangeLabel, int numOfAttempts, CodeType codeType);
+    boolean promptUserForGameStart(String rangeLabel);
 
-    String promptUserForGuess(int codeLength);
+    String promptUserForGuess();
 
     // Display
     void userWon();
