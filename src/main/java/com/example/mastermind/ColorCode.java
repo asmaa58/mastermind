@@ -34,7 +34,7 @@ class ColorCode extends Code {
     }
 
     @Override
-    int initMaximumCodeLength() {
+    int initMaxSymbolsCount() {
         return ALL_LETTERS.length();
     }
 

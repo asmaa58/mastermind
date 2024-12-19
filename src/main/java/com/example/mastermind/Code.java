@@ -5,7 +5,7 @@ abstract class Code {
 
     private final char[] symbolsList;
     private final String rangeLabel;
-    private final int maximumCodeLength;
+    private final int maxSymbolsCount;
 
     Code(final GameSettings settings) {
         final int symbolsCount = settings.getSymbolsCount();
@@ -13,7 +13,7 @@ abstract class Code {
 
         symbolsList = initSymbolsList(symbolsCount);
         rangeLabel = initRangelabel(symbolsCount);
-        maximumCodeLength = initMaximumCodeLength();
+        maxSymbolsCount = initMaxSymbolsCount();
         code = generateRandomCode(codeLength, symbolsCount, symbolsList);
     }
 
@@ -23,7 +23,7 @@ abstract class Code {
 
     abstract String initRangelabel(int symbolsCount);
 
-    abstract int initMaximumCodeLength();
+    abstract int initMaxSymbolsCount();
 
     abstract boolean isUserGuessValid(String userGuess, int codeLength, int symbolsCount);
 
@@ -35,8 +35,8 @@ abstract class Code {
         return rangeLabel;
     }
 
-    final int getMaximumCodeLength() {
-        return maximumCodeLength;
+    final int getMaxSymbolsCount() {
+        return maxSymbolsCount;
     }
 
     final String getCodeText() {

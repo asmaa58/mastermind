@@ -34,7 +34,7 @@ class NumberCode extends Code {
     }
 
     @Override
-    int initMaximumCodeLength() {
+    int initMaxSymbolsCount() {
         return 9;
     }
 
