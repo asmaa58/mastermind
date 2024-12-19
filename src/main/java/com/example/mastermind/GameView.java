@@ -138,4 +138,11 @@ class GameView implements GameViewInterface {
         System.out.println(banner);
     }
 
+    @Override
+    public void printReminder(String rangeLabel) {
+        if (settings.getCodeType() == CodeType.COLOR)
+            rangeLabel = colorColorCode(rangeLabel);
+        System.out.println(Ansi.DIM + "code is made of: " + rangeLabel + Ansi.RESET);
+    }
+
 }

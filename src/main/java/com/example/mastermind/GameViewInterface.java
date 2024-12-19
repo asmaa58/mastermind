@@ -14,4 +14,6 @@ interface GameViewInterface {
     void userLost(String answer);
 
     void printHeader(List<Guess> guesses);
+
+    void printReminder(String rangeLabel);
 }
