@@ -93,9 +93,9 @@ class GameView implements GameViewInterface {
         return colored;
     }
     @Override
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'promptUserForGuess'");
     public String promptUserForGuess() {
+        System.out.print(PROMPT_SYMBOL + "enter a " + settings.getCodeLength() + " letter code: ");
+        return scanner.nextLine().toUpperCase();
     }
 
     @Override
