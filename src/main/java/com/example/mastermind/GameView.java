@@ -92,6 +92,7 @@ class GameView implements GameViewInterface {
         colored += Ansi.RESET;
         return colored;
     }
+
     @Override
     public String promptUserForGuess() {
         System.out.print(PROMPT_SYMBOL + "enter a " + settings.getCodeLength() + " letter code: ");
@@ -121,10 +122,113 @@ class GameView implements GameViewInterface {
         System.out.println("The code was " + colorColorCode(answer));
     }
 
+    private final String CHAR_BORDER_SIDE_V = "║";
+    private final String CHAR_BORDER_SIDE_H = "═";
+
+    private final char CHAR_CORNER_UPPER_LEFT = '╔';
+    private final char CHAR_CORNER_UPPER_RIGHT = '╗';
+    private final char CHAR_CORNER_LOWER_LEFT = '╚';
+    private final char CHAR_CORNER_LOWER_RIGHT = '╝';
+
+    private final String CHAR_ROW_DIVIDER_SIDE = "─";
+    private final char CHAR_ROW_DIVIDER_LEFT = '╟';
+    private final char CHAR_ROW_DIVIDER_RIGHT = '╢';
+    private final char CHAR_ROW_DIVIDER_COLUMN = '┼';
+
+    private final char CHAR_COLUMN_DIVIDER = '│';
+
+    private final char CHAR_COLUMN_UPPER = '╤';
+    private final char CHAR_COLUMN_LOWER = '╧';
+
+    private void printTopAndBottomBorder(int[] columnsWidth, char left, char right, char betweenColumns, String dash) {
+        System.out.print(left);
+        final int numOfColumns = columnsWidth.length;
+        int columnWidth;
+        for (int columnIndex = 0; columnIndex < numOfColumns; columnIndex++) {
+            columnWidth = columnsWidth[columnIndex];
+            System.out.print(dash.repeat(columnWidth + 2));
+            if (columnIndex != numOfColumns - 1)
+                System.out.print(betweenColumns);
+        }
+        System.out.println(right);
+    }
+
     @Override
-    public void printHeader(List<Guess> guesses) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printHeader'");
+    public void printHeader(final List<Guess> guesses) {
+        final String[] header = { "Guess", "Exact Matches", "Partial Matches", "Attempts Remaining" };
+        final int COLUMNS_COUNT = header.length;
+        final int ROWS_COUNT = guesses.size() + 1;
+
+        // Convert List<Guess> to String[][]
+        String[][] rows = new String[ROWS_COUNT][COLUMNS_COUNT];
+        rows[0] = header;
+        for (int guessIndex = 0; guessIndex < guesses.size(); guessIndex++) {
+            Guess guess = guesses.get(guessIndex);
+            rows[guessIndex + 1] = new String[] { guess.getGuess(),
+                    String.valueOf(guess.getExactMatches()),
+                    String.valueOf(guess.getPartialMatches()),
+                    String.valueOf(guess.getAttemptsRemaining())
+            };
+        }
+
+        // Populate columnsWidths
+        final int[] columnsWidths = new int[COLUMNS_COUNT];
+        for (int columnIndex = 0; columnIndex < COLUMNS_COUNT; columnIndex++) {
+            int maxColumnWidth = 0;
+            for (int rowIndex = 0; rowIndex < ROWS_COUNT; rowIndex++) {
+                int cellLength = rows[rowIndex][columnIndex].length();
+                if (cellLength > maxColumnWidth)
+                    maxColumnWidth = cellLength;
+            }
+            columnsWidths[columnIndex] = maxColumnWidth;
+        }
+
+        System.out.print(Ansi.CLEAR);
+        printTopAndBottomBorder(
+                columnsWidths,
+                CHAR_CORNER_UPPER_LEFT,
+                CHAR_CORNER_UPPER_RIGHT,
+                CHAR_COLUMN_UPPER,
+                CHAR_BORDER_SIDE_H);
+
+        for (int rowIndex = 0; rowIndex < ROWS_COUNT; rowIndex++) {
+            // Print a data row
+            for (int columnIndex = 0; columnIndex < COLUMNS_COUNT; columnIndex++) {
+                if (columnIndex == 0)
+                    System.out.print(CHAR_BORDER_SIDE_V + " ");
+                else
+                    System.out.print(CHAR_COLUMN_DIVIDER + " ");
+
+                String cell = rows[rowIndex][columnIndex];
+                final int rightPaddingCount = columnsWidths[columnIndex] + 1 - cell.length(); // Should be before
+                                                                                              // coloring
+
+                // Color guess text, ignoring the header and other columns
+                if (settings.getCodeType() == CodeType.COLOR && columnIndex == 0 && rowIndex != 0)
+                    cell = colorColorCode(cell);
+                else if (columnIndex == 3 && rowIndex != 0 && Integer.valueOf(cell) <= 3)
+                    cell = Ansi.INVERT + (Ansi.RED + cell) + Ansi.RESET;
+
+                // int columnWidth = columnsWidths[columnIndex] + 1;
+                // System.out.printf("%-" + columnWidth + "s", cell);
+                System.out.print(cell);
+                System.out.print(" ".repeat(rightPaddingCount));
+            }
+            System.out.println(CHAR_BORDER_SIDE_V);
+
+            // Print divider between rows (as long as it's not the last row)
+            if (rowIndex != ROWS_COUNT - 1) {
+                printTopAndBottomBorder(columnsWidths, CHAR_ROW_DIVIDER_LEFT, CHAR_ROW_DIVIDER_RIGHT,
+                        CHAR_ROW_DIVIDER_COLUMN, CHAR_ROW_DIVIDER_SIDE);
+            }
+        }
+
+        printTopAndBottomBorder(
+                columnsWidths,
+                CHAR_CORNER_LOWER_LEFT,
+                CHAR_CORNER_LOWER_RIGHT,
+                CHAR_COLUMN_LOWER,
+                CHAR_BORDER_SIDE_H);
     }
 
     private boolean isRunningInIDEConsole() {
