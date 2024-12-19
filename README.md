@@ -31,3 +31,7 @@ java --class-path ./target/classes/ com.example.mastermind.App
 # or with `make`
 make run
 ```
+
+## Credits
+
+- UI/UX was heavly inspired by <https://github.com/xprmnts/mastermind-cli>
